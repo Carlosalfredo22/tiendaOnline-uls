@@ -4,21 +4,31 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateRolesTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Ejecutar la migración.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        //Tabla Roles
+        //Tabla roles cambios hechos -- Carlos Alfredo
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id('idroles'); // Definir la columna idroles como clave primaria
+            $table->string('nombres', 50); // Columna para los nombres de los roles
+            $table->timestamps(); // Agrega created_at y updated_at
+        });
     }
 
     /**
-     * Reverse the migrations.
+     * Deshacer la migración.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        //
+        Schema::dropIfExists('roles');
     }
-};
+}
+
