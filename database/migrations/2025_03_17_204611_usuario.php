@@ -4,21 +4,35 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateUsuariosTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Ejecutar la migración.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        //Tabla Usuario-Carlos Alfredo
+        //Tabla Usuario --Carlos Alfredo
+        Schema::create('usuario', function (Blueprint $table) {
+            $table->id('idusuario'); // Definir la columna idusuario como clave primaria
+            $table->string('nombre'); // Columna para el nombre del usuario
+            $table->string('email')->unique(); // Columna para el email (único)
+            $table->string('contrasena'); // Columna para la contraseña
+            $table->foreignId('idroles')->constrained('roles'); // Clave foránea a la tabla roles
+            $table->foreignId('iddireccion')->constrained('direccion'); // Clave foránea a la tabla direcciones
+            $table->timestamps(); // Agrega created_at y updated_at
+        });
     }
 
     /**
-     * Reverse the migrations.
+     * Deshacer la migración.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        //
+        Schema::dropIfExists('usuario');
     }
-};
+}
+
