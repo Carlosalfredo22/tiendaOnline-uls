@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        //tabla detalles pedidos  gabriela
+        //tabla detalles pedidos-gabriela
         Schema::create('detallespedidos', function (Blueprint $table) {
             $table->id('iddetallespedidos');
             $table->integer('cantidad');
